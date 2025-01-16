@@ -11,10 +11,21 @@ class MakeFriendsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
       child: ListView.builder(
         itemCount: 3,
         itemBuilder: (ctx, idx) {
+          /* 
+          if the post card is the last item
+          then the padding bottom is higher 
+          to avoid hidden in the back of navbar 
+          */
+          if (idx == 2){
+            return const Padding(
+            padding: EdgeInsets.only(bottom: 102),
+            child: PostCard(),
+          );
+          }
           return const Padding(
             padding: EdgeInsets.only(bottom: 16),
             child: PostCard(),

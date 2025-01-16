@@ -40,8 +40,9 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(20),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.fromLTRB(20,20,20,20),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
