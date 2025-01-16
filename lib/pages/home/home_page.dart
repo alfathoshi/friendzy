@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              toolbarHeight: 100,
+              toolbarHeight: 85,
               backgroundColor: lightTheme.scaffoldBackgroundColor,
               floating: true,
               snap: true,
