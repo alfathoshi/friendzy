@@ -3,7 +3,7 @@ import 'package:friendzy/pages/blank.dart';
 import 'package:friendzy/pages/discover_page.dart';
 import 'package:friendzy/pages/matches_page.dart';
 import 'package:friendzy/pages/messages_page.dart';
-import '../pages/home_page.dart';
+import '../pages/home/home_page.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -42,13 +42,15 @@ class _NavbarState extends State<Navbar> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(20),
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: const Color(0xff752277).withOpacity(0.15),
-            blurRadius: 40,
-            offset: const Offset(8, 0),
-          )
-        ]),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xff752277).withOpacity(0.15),
+              blurRadius: 40,
+              offset: const Offset(8, 0),
+            ),
+          ],
+        ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BottomNavigationBar(
