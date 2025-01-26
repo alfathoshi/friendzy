@@ -15,11 +15,6 @@ class MakeFriendsTab extends StatelessWidget {
       child: ListView.builder(
         itemCount: 3,
         itemBuilder: (ctx, idx) {
-          /* 
-          if the post card is the last item
-          then the padding bottom is higher 
-          to avoid hidden in the back of navbar 
-          */
           if (idx == 2){
             return const Padding(
             padding: EdgeInsets.only(bottom: 102),

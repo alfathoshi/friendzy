@@ -4,7 +4,19 @@ import 'package:google_fonts/google_fonts.dart';
 import '../themes/light_theme.dart';
 
 class PersonCard extends StatelessWidget {
-  const PersonCard({super.key});
+  final String image;
+  final String name;
+  final int age;
+  final num distance;
+  final String location;
+  const PersonCard({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.age,
+    required this.distance,
+    required this.location,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +25,7 @@ class PersonCard extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(16),
-          child: Image.asset('assets/images/person1.png'),
+          child: Image.asset(image),
         ),
         Positioned(
           top: 8,
@@ -46,7 +58,7 @@ class PersonCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12)),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  '4,8 km away',
+                  '$distance km away',
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -57,7 +69,7 @@ class PersonCard extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                'Vanessa, 18',
+                '$name, $age',
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   color: Colors.white,
@@ -68,7 +80,7 @@ class PersonCard extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                'BALI',
+                location,
                 style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w200,

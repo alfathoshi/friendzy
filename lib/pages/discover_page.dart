@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friendzy/data/database.dart';
 import 'package:friendzy/widgets/interest_option.dart';
 import 'package:friendzy/widgets/person_card.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,10 +11,12 @@ class DiscoverPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final db = Database();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 85,
             backgroundColor: lightTheme.scaffoldBackgroundColor,
             floating: true,
@@ -96,7 +99,7 @@ class DiscoverPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16,16,16,96),
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 96),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -104,11 +107,19 @@ class DiscoverPage extends StatelessWidget {
                     height: 240,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 7,
+                      itemCount: db.personData.length,
                       itemBuilder: (context, index) {
-                        return const Padding(
+                        List listData = db.personData;
+                        Map<String, dynamic> data = listData[index];
+                        return  Padding(
                           padding: EdgeInsets.only(right: 12),
-                          child: PersonCard(),
+                          child: PersonCard(
+                            image: data['image'],
+                            name: data['name'],
+                            age: data['age'],
+                            distance: data['distance'],
+                            location: data['location'],
+                          ),
                         );
                       },
                     ),
@@ -141,37 +152,47 @@ class DiscoverPage extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 100,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return const Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 4),
-                                        child: InterestOption(),
-                                      ),
-                                      SizedBox(
-                                        height: 12,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 4),
-                                        child: InterestOption(),
-                                      ),
-                                    ],
+                      SizedBox(
+                        height: 120,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: db.interestData
+                                    .take((db.interestData.length / 2).ceil())
+                                    .map((entry) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: InterestOption(
+                                      text: entry,
+                                      get: () {},
+                                    ),
                                   );
-                                }),
-                          )
-                        ],
+                                }).toList(),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Row(
+                                children: db.interestData
+                                    .skip((db.interestData.length / 2).ceil())
+                                    .map((entry) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: InterestOption(
+                                      text: entry,
+                                      get: () {},
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
+                          ),
+                        ),
                       )
                     ],
-                  ),
-                  const SizedBox(
-                    height: 24,
                   ),
                   Text(
                     'Around Me',
@@ -200,8 +221,8 @@ class DiscoverPage extends StatelessWidget {
                   ),
                   Image.asset(
                     'assets/images/map.png',
-                    width: double.infinity, 
-                    fit: BoxFit.cover, 
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   )
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:friendzy/pages/login_page.dart';
 import 'package:friendzy/themes/light_theme.dart';
 import 'package:friendzy/widgets/navbar.dart';
 
