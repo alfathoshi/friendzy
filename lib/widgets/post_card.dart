@@ -4,7 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PostCard extends StatelessWidget {
-  const PostCard({super.key});
+  final String postPict;
+  final String name;
+  final String caption;
+  final String type;
+  final String location;
+  final String profilePict;
+  const PostCard({
+    super.key,
+    required this.postPict,
+    required this.name,
+    required this.caption,
+    required this.type,
+    required this.location,
+    required this.profilePict,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +27,7 @@ class PostCard extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(24),
-          child: Image.asset('assets/images/post1.png'),
+          child: Image.asset(postPict),
         ),
         ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -57,24 +71,12 @@ class PostCard extends StatelessWidget {
                 border: Border.all(color: Colors.white.withOpacity(0.3)),
                 borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.all(8),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.nature,
-                  size: 16,
-                  color: Colors.white,
-                ),
-                const SizedBox(
-                  width: 6,
-                ),
-                Text(
-                  'Travel',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            child: Text(
+              type,
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -84,7 +86,7 @@ class PostCard extends StatelessWidget {
           child: Container(
             width: 247,
             child: Text(
-              'If you could live anywhere in the world, where would you pick?',
+              caption,
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 color: Colors.white,
@@ -98,7 +100,11 @@ class PostCard extends StatelessWidget {
             bottom: 16,
             child: Row(
               children: [
-                const CircleAvatar(),
+                CircleAvatar(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.asset(profilePict)),
+                ),
                 const SizedBox(
                   width: 12,
                 ),
@@ -106,14 +112,14 @@ class PostCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Miranda Kehlani',
+                      name,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      'STUTTGART',
+                      location,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontWeight: FontWeight.w200,
