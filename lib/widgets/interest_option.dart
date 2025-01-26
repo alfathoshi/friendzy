@@ -2,25 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:friendzy/themes/light_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class InterestOption extends StatelessWidget {
+class InterestOption extends StatefulWidget {
   final String text;
-  final VoidCallback get;
-  const InterestOption({super.key, required this.text, required this.get});
+  const InterestOption({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  State<InterestOption> createState() => _InterestOptionState();
+}
+
+class _InterestOptionState extends State<InterestOption> {
+  bool isClick = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: get,
+      onTap: () {
+        setState(() {
+          isClick = !isClick;
+        });
+      },
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: lightTheme.primaryColor.withOpacity(0.2)),
+            color: isClick ? Color(0xffDD88CF) : Colors.white,
+            border: Border.all(
+              color: isClick? Colors.white : lightTheme.primaryColor.withOpacity(0.2) ,
+            ),
             borderRadius: BorderRadius.circular(12)),
         padding: const EdgeInsets.all(8),
         child: Text(
-          text,
+          widget.text,
           style: GoogleFonts.poppins(
-            color: lightTheme.primaryColor,
+            color: isClick? Colors.white : lightTheme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
         ),

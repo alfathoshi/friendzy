@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
   final String postPict;
   final String name;
   final String caption;
@@ -21,13 +21,20 @@ class PostCard extends StatelessWidget {
   });
 
   @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
+  bool isClick = false;
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.centerRight,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(24),
-          child: Image.asset(postPict),
+          child: Image.asset(widget.postPict),
         ),
         ClipRRect(
           borderRadius: const BorderRadius.only(
@@ -45,9 +52,20 @@ class PostCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.4),
-                    child: const Icon(Icons.thumb_up),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isClick = !isClick;
+                      });
+                    },
+                    child: CircleAvatar(
+                      backgroundColor:
+                          isClick ? Colors.lightBlue[100] : Colors.white.withOpacity(0.4),
+                      child: Icon(
+                        Icons.thumb_up,
+                        color: isClick ? Colors.blue : Colors.white,
+                      ),
+                    ),
                   ),
                   CircleAvatar(
                     backgroundColor: Colors.white.withOpacity(0.4),
@@ -72,7 +90,7 @@ class PostCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12)),
             padding: const EdgeInsets.all(8),
             child: Text(
-              type,
+              widget.type,
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -86,7 +104,7 @@ class PostCard extends StatelessWidget {
           child: Container(
             width: 247,
             child: Text(
-              caption,
+              widget.caption,
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 color: Colors.white,
@@ -102,8 +120,8 @@ class PostCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(profilePict)),
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(widget.profilePict)),
                 ),
                 const SizedBox(
                   width: 12,
@@ -112,14 +130,14 @@ class PostCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      widget.name,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      location,
+                      widget.location,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontWeight: FontWeight.w200,

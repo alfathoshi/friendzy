@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:friendzy/pages/blank.dart';
+import 'package:friendzy/pages/post_page.dart';
 import 'package:friendzy/pages/discover_page.dart';
-import 'package:friendzy/pages/matches_page.dart';
+import 'package:friendzy/pages/matches/matches_page.dart';
 import 'package:friendzy/pages/messages_page.dart';
 import '../pages/home/home_page.dart';
 
@@ -15,23 +15,16 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
 
-  bool click = true;
-
   void _navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
-      if (_selectedIndex == 4) {
-        click = false;
-      } else {
-        click = true;
-      }
     });
   }
 
   final List<Widget> _pages = [
     const HomePage(),
     const DiscoverPage(),
-    const Blank(),
+    const PostPage(),
     const MatchesPage(),
     const MessagesPage(),
   ];
@@ -42,7 +35,7 @@ class _NavbarState extends State<Navbar> {
       body: _pages[_selectedIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: const EdgeInsets.fromLTRB(20,20,20,20),
+        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -77,7 +70,7 @@ class _NavbarState extends State<Navbar> {
                       ),
               ),
               BottomNavigationBarItem(
-                label: 'Search',
+                label: 'Discover',
                 icon: _selectedIndex == 1
                     ? const CircleAvatar(
                         backgroundColor: Color(0xffDD88CF),
@@ -90,7 +83,7 @@ class _NavbarState extends State<Navbar> {
                       ),
               ),
               BottomNavigationBarItem(
-                label: 'Community',
+                label: 'Post',
                 icon: _selectedIndex == 2
                     ? const CircleAvatar(
                         backgroundColor: Color(0xffDD88CF),
@@ -101,7 +94,7 @@ class _NavbarState extends State<Navbar> {
                       ),
               ),
               BottomNavigationBarItem(
-                label: 'Notification',
+                label: 'Matches',
                 icon: _selectedIndex == 3
                     ? const CircleAvatar(
                         backgroundColor: Color(0xffDD88CF),
@@ -114,7 +107,7 @@ class _NavbarState extends State<Navbar> {
                       ),
               ),
               BottomNavigationBarItem(
-                label: 'Message',
+                label: 'Messages',
                 icon: _selectedIndex == 4
                     ? const CircleAvatar(
                         backgroundColor: Color(0xffDD88CF),

@@ -137,4 +137,48 @@ class Database {
       "match": 92,
     },
   ];
+
+  List<Map<String, dynamic>> chatData = [
+    {
+      'name': 'Alfredo Calzoni',
+      'message':
+          'What about the new jacket if I grab it in black instead of brown?',
+      'profilePict': 'assets/images/chatProfilePict1.png',
+      'time': '09:18',
+    },
+    {
+      'name': 'Clara Hazel',
+      'message': 'I know right 😉',
+      'profilePict': 'assets/images/profile2.png',
+      'time': '12:44',
+    },
+    {
+      'name': 'Brandon Aminoff',
+      'message':
+          'I’ve already registered, can’t wait to see you guys at the event!',
+      'profilePict': 'assets/images/postPerson2.png',
+      'time': '08:06',
+    },
+    {
+      'name': 'Amina Amina',
+      'message':
+          'It will have two lines of heading with bold text, followed by a detailed paragraph explaining the main idea.',
+      'profilePict': 'assets/images/profile1.png',
+      'time': '09:32',
+    },
+    {
+      'name': 'Savanna Hall',
+      'message':
+          'It will have two lines of heading, styled in large bold fonts, and a subheading beneath for additional context.',
+      'profilePict': 'assets/images/chatProfilePict5.png',
+      'time': '06:21',
+    },
+    {
+      'name': 'Sara Griff',
+      'message':
+          'Oh come on!! Is it really that great, or are you just hyping it up?',
+      'profilePict': 'assets/images/chatProfilePict6.png',
+      'time': '05:01',
+    }
+  ];
 }

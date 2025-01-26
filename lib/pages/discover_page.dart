@@ -111,8 +111,8 @@ class DiscoverPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         List listData = db.personData;
                         Map<String, dynamic> data = listData[index];
-                        return  Padding(
-                          padding: EdgeInsets.only(right: 12),
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 12),
                           child: PersonCard(
                             image: data['image'],
                             name: data['name'],
@@ -167,7 +167,6 @@ class DiscoverPage extends StatelessWidget {
                                     padding: const EdgeInsets.only(right: 8),
                                     child: InterestOption(
                                       text: entry,
-                                      get: () {},
                                     ),
                                   );
                                 }).toList(),
@@ -183,7 +182,6 @@ class DiscoverPage extends StatelessWidget {
                                     padding: const EdgeInsets.only(right: 8),
                                     child: InterestOption(
                                       text: entry,
-                                      get: () {},
                                     ),
                                   );
                                 }).toList(),
@@ -219,15 +217,17 @@ class DiscoverPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Image.asset(
                     'assets/images/map.png',
-                    width: double.infinity,
                     fit: BoxFit.cover,
-                  )
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

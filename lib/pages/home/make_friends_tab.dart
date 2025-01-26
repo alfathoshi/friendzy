@@ -14,7 +14,7 @@ class MakeFriendsTab extends StatelessWidget {
         itemCount: db.postData.length,
         itemBuilder: (ctx, idx) {
           Map<String, dynamic> data = db.postData[idx];
-          if (idx == db.postData.length) {
+          if (idx == db.postData.length - 1) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 102),
               child: PostCard(

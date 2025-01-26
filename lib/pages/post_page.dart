@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SearchPartnersTab extends StatelessWidget {
-  const SearchPartnersTab({super.key});
+class PostPage extends StatelessWidget {
+  const PostPage({super.key});
 
   @override
   Widget build(BuildContext context) {
